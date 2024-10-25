@@ -9,7 +9,6 @@ then
   echo "Database is ready!"
 fi
 
-python manage.py makemigrations
 python manage.py migrate
 
 exec "$@"
