@@ -17,8 +17,7 @@ DEBUG = bool(os.environ.get("DEBUG", default=0))
 
 ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS").split(" ")
 
-# Setting User Account App As the default models
-AUTH_USER_MODEL = 'useraccount.User'
+# Setting User Account Model
 
 # Application definition
 
