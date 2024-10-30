@@ -3,7 +3,7 @@ from rest_framework.decorators import api_view, authentication_classes, permissi
 
 from .forms import PropertyForm
 from .models import Property
-from .serializers import PropertiesSerializer
+from .serializers import PropertiesSerializer, PropertiesDetailSerializer
 
 
 @api_view(['GET'])
@@ -29,5 +29,16 @@ def create_property(request):
         return JsonResponse({'success': True})
     else:
         print(form.errors, form.non_field_errors())
-
         return JsonResponse({'errors': form.errors.as_json()}, status= 400)
+
+@api_view(['GET'])
+@authentication_classes([])
+@permission_classes([])
+def property_detail(request, pk):
+    property = Property.objects.get(id=pk)
+
+    serializers = PropertiesDetailSerializer(property, many=False)
+
+    return JsonResponse({
+        'success': serializers.data
+    })

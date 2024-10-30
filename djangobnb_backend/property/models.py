@@ -19,7 +19,7 @@ class Property(models.Model):
     category= models.CharField(max_length=255)
     # Favourite property
     image = models.ImageField(upload_to='uploads/properties')
-    land_lord= models.ForeignKey(User, related_name= 'properties', on_delete= models.CASCADE)
+    land_lord= models.ForeignKey(User , related_name= 'properties', on_delete= models.CASCADE)
     created_at= models.DateTimeField(auto_now_add=True)
 
     def image_url(self):
