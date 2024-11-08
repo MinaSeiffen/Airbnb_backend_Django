@@ -39,8 +39,7 @@ def properties_list(request):
     serializers = PropertiesSerializer(properties, many=True)
 
     return JsonResponse({
-        'success': serializers.data,
-        'favourites': favourites
+        'success': serializers.data
     })
 
 @api_view(['POST', 'FILES'])

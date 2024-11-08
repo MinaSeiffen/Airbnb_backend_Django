@@ -20,9 +20,7 @@ def get_landlord(request, pk):
 
 @api_view(['GET'])
 def reservation_list(request):
-    print("5555555555555555555555555",request.user)
     reservations = request.user.reservations.all()
-    print(reservations)
 
     if reservations is not None:
         serializers = ReservationListSerializer(reservations, many=True)
