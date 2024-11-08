@@ -25,9 +25,13 @@ def properties_list(request):
 
     # filtering properties by landlord if exists
     land_lord_id = request.GET.get('land_lord_id', '')
+    is_favourite = request.GET.get('is_favourite', '')
 
     if land_lord_id:
         properties = properties.filter(land_lord_id = land_lord_id)
+
+    if is_favourite and user:
+        properties = properties.filter(favourited__in= [user])
 
     # Favourite
     if user:
@@ -39,9 +43,12 @@ def properties_list(request):
     serializers = PropertiesSerializer(properties, many=True)
 
     return JsonResponse({
-        'success': serializers.data,
-        'favourites': favourites
+        'success': {
+            'all_properties': serializers.data,
+            'favourites': favourites
+        }
     })
+
 
 @api_view(['POST', 'FILES'])
 def create_property(request):
