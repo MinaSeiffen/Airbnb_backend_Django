@@ -27,6 +27,13 @@ SITE_ID = 1
 # Initiating Website URL
 WEBSITE_URL = 'http://localhost:8000'
 
+# Channel Layer Settings
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels.layers.InMemoryChannelLayer'
+    }
+}
+
 # Initiating Token Life TIME_ZONE
 
 SIMPLE_JWT = {
@@ -73,6 +80,7 @@ REST_AUTH= {
 # Application definition
 
 INSTALLED_APPS = [
+    'daphne',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -126,6 +134,8 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'airbnb_backend.wsgi.application'
+
+ASGI_APPLICATION = 'airbnb_backend.asgi.application'
 
 
 # Database
