@@ -10,9 +10,6 @@ def conversations_list(request):
         return JsonResponse({'error': 'Please, Login First'})
     serializer = ConversationListSerializer(request.user.conversations.all(), many= True)
 
-    if serializer is None:
-        return JsonResponse({'error': 'Conversations not found'}, safe= False)
-
     return JsonResponse({'success': serializer.data}, safe= False)
 
 
